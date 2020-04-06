@@ -1,11 +1,11 @@
-### Add to your Deployer server
+### Add Below Entry To Your Deployer (Updated By Joe)
 
 [shclustering]
 pass4SymmKey = yoursecuritykey
 shcluster_label = shcluster1
 
 ```sh 
-# In all the SH cluster memebers ###(dont run it for deployer)
+# In all the SH cluster memebers ###(Run On All Search Head With The Exception Of Deployer)
 ./splunk init shcluster-config -auth <username>:<password> -mgmt_uri <URI>:<management_port> -replication_port <replication_port> -replication_factor <n> -conf_deploy_fetch_url <URL>:<management_port> -secret <security_key> -shcluster_label <label>
 ```
 ```sh 
