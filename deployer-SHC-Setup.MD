@@ -13,6 +13,11 @@ shcluster_label = shcluster1
 ./splunk bootstrap shcluster-captain -servers_list "<URI>:<management_port>,<URI>:<management_port>,..." -auth <username>:<password>
 ```
 ```sh 
+# In all the SH cluster memebers ###(Run On All Search Head That Need To Receive Data On Indexer  )
+./splunk edit cluster-config -mode  searchhead -master_url https://indexerNodeMaster:8089(mgtport) -secret password -auth admin:password 
+```
+
+```sh 
 # remove a memeber 
 ./splunk remove shcluster-member
 ```
