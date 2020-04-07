@@ -14,7 +14,7 @@ shcluster_label = shcluster1
 ```
 ```sh 
 # In all the SH cluster memebers ###(Run On All Search Head That Need To Receive Data On Indexer  )
-./splunk edit cluster-config -mode  searchhead -master_url https://indexerNodeMaster:8089(mgtport) -secret password -auth admin:password 
+./splunk edit cluster-config -mode  searchhead -master_uri https://indexerNodeMaster:8089(mgtport) -secret password 
 ```
 
 ```sh 
