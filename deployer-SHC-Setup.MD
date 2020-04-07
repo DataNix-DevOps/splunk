@@ -29,3 +29,32 @@ shcluster_label = shcluster1
 # see the member status
 ./splunk list shcluster-config -auth <username>:<password>
 ```
+
+### Indexer clustering setup 
+
+# In Cluster Master $SPLUNK_HOME/etc/system/local/server.conf
+```sh 
+[clustering]
+mode = master
+replication_factor = 4
+search_factor = 3
+pass4SymmKey = whatever
+cluster_label = idxcluster1
+```
+# In each Indexer $SPLUNK_HOME/etc/system/local/server.conf
+```sh 
+[clustering]
+master_uri = https://<Cluster Master URI>:<management_port>
+mode = slave
+pass4SymmKey = <pass4SymmKey configured in master>
+
+[replication_port://<replication_port>]
+```
+# Configure each member of the SH cluster as search head in Indexer cluster
+```sh 
+./splunk edit cluster-config 
+    -mode searchhead 
+    -master_uri <Indexer Cluster Master URI>
+    -secret <Indexer pass4SymmKey> 
+```
+./splunk restart
